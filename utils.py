@@ -15,7 +15,7 @@ def view_all_patients(patients):
 def search_patient(patients, search):
     found = False
     for patient in patients:
-        if search.lower() in patient.name:
+        if search.lower() in patient.name.lower() or search in patient.patient_id:
             print(patient)
             found = True
     if not found:
