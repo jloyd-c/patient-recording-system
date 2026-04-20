@@ -1,5 +1,5 @@
 from patient import Patient
-from utils import add_patient, view_all_patients
+from utils import add_patient, view_all_patients, search_patient
 
 patients = []
 
@@ -10,14 +10,16 @@ def gender():
 def menu():
     print("1. Add Patient")
     print("2. View Patients")
+    print("3. Search Patient")
+    print("4. Exit")
 
 while True:
     menu()
     try:
         user_input = int(input("Choose an Options: "))
     except ValueError:
-         print("Invalid Input Please Enter Number!")
-         continue
+        print("Invalid Input Please Enter Number!")
+        continue
 
     if user_input == 1:
             patient_id = input("Enter Patient ID: ")
@@ -46,5 +48,13 @@ while True:
             add_patient(patients, patient_id, name, age, user_gender, contact_number)
             print("Patient added successfully!")
     
-    if user_input == 2:
-         view_all_patients(patients)
+    elif user_input == 2:
+        view_all_patients(patients)
+    
+    elif user_input == 3:
+        search = input("Enter name or patient ID: ")
+        search_patient(patients, search)
+
+    elif user_input == 4:
+        print("Goodbye!")
+        break
