@@ -1,5 +1,5 @@
 from patient import Patient
-from utils import add_patient
+from utils import add_patient, view_all_patients
 
 patients = []
 
@@ -9,6 +9,7 @@ def gender():
 
 def menu():
     print("1. Add Patient")
+    print("2. View Patients")
 
 while True:
     menu()
@@ -44,3 +45,6 @@ while True:
 
             add_patient(patients, patient_id, name, age, user_gender, contact_number)
             print("Patient added successfully!")
+    
+    if user_input == 2:
+         view_all_patients(patients)
