@@ -158,4 +158,4 @@ Display a summary report of all patients in the system.
 
 ## 👨‍💻 Author
 
-Built by [Your Name] as a Python learning project.
+Built by [Jhon Loyd Canaria] as a Python learning project.

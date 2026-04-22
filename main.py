@@ -1,5 +1,5 @@
 from patient import Patient
-from utils import add_patient, view_all_patients, search_patient, update_patient
+from utils import add_patient, view_all_patients, search_patient, update_patient, delete_patient
 
 patients = []
 
@@ -7,12 +7,17 @@ def gender():
      print("1. Male")
      print("2. Female")
 
+def confirmation():
+     print("1. Yes delete the patient record")
+     print("2. No cancel the action")
+
 def menu():
     print("1. Add Patient")
     print("2. View Patients")
     print("3. Search Patients")
     print("4. Update Patients")
-    print("5. Exit")
+    print("5. Delete Patients")
+    print("6. Exit")
 
 def update_choices():
     print("1. Update Name")
@@ -97,5 +102,22 @@ while True:
         update_patient(patients, update, name, age, user_gender, contact_number, choice_option)
 
     elif user_input == 5:
+        view_all_patients(patients)
+        if len(patients) == 0:
+             continue
+        delete_patients = input("Enter patient ID: ")
+        found = False
+        for patient in patients:
+            if delete_patients == patient.patient_id:
+                found = True
+                break
+        if not found:
+            print("Wrong Patient ID")
+            continue
+        confirmation()
+        delete_confirmation = int(input("Are you sure you want to delete patient record?: "))
+        delete_patient(patients, delete_patients, delete_confirmation)
+    
+    elif user_input == 6:
         print("Goodbye!")
         break

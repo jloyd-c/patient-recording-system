@@ -34,4 +34,12 @@ def update_patient(patients, update, name, age, gender, contact_number, choice_o
                 patients[index].contact_number = contact_number
             print(f"Patient: {patient.patient_id} updated info")
 
-        
+def delete_patient(patients, delete_patients, delete_confirmation):
+    for index, patient in enumerate(patients):
+        if delete_patients == patient.patient_id:
+            if delete_confirmation == 1:
+                patients.pop(index)
+                print("Patient record deleted")
+            elif delete_confirmation == 2:
+                print("Canceled delete patient record")
+                break
