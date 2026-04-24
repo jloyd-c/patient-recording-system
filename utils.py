@@ -43,3 +43,26 @@ def delete_patient(patients, delete_patients, delete_confirmation):
             elif delete_confirmation == 2:
                 print("Canceled delete patient record")
                 break
+
+def view_medical_history(patients, patient_id):
+    found = False
+
+    for patient in patients:
+        if patient.patient_id == patient_id:
+            found = True
+            print(f"\n=== Medical History of {patient.name} ===")
+
+            if not patient.medical_records:
+                print("No medical records yet.")
+            else:
+                for index, record in enumerate(patient.medical_records, start=1):
+                    print(f"\nRecord #{index}")
+                    print(f"Date      : {record['date']}")
+                    print(f"Diagnosis : {record['diagnosis']}")
+                    print(f"Treatment : {record['treatment']}")
+                    print(f"Doctor    : {record['doctor']}")
+
+            break
+
+    if not found:
+        print("Patient not found.")

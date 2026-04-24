@@ -1,5 +1,5 @@
 from patient import Patient
-from utils import add_patient, view_all_patients, search_patient, update_patient, delete_patient
+from utils import add_patient, view_all_patients, search_patient, update_patient, delete_patient, view_medical_history
 from records import add_medical_record
 
 patients = []
@@ -19,7 +19,8 @@ def menu():
     print("4. Update Patients")
     print("5. Delete Patients")
     print("6. Add Medical Record")
-    print("7. Exit")
+    print("7. View Medical History")
+    print("8. Exit")
 
 def update_choices():
     print("1. Update Name")
@@ -126,5 +127,13 @@ while True:
         add_medical_record(patients)
 
     elif user_input == 7:
+        view_all_patients(patients)
+        if len(patients) == 0:
+            continue
+
+        patient_id = input("Enter Patient ID: ")
+        view_medical_history(patients, patient_id)
+
+    elif user_input == 8:
         print("Goodbye!")
         break
