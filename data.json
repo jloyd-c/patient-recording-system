@@ -1,0 +1,17 @@
+[
+    {
+        "patient_id": "221669",
+        "name": "diane",
+        "age": 20,
+        "gender": "Female",
+        "contact_number": 9123456789,
+        "medical_records": [
+            {
+                "date": "2003-12-12",
+                "diagnosis": "wala",
+                "treatment": "wala din",
+                "doctor": "secret"
+            }
+        ]
+    }
+]

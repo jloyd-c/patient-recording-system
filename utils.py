@@ -87,6 +87,7 @@ def load_data():
         with open("data.json", "r") as f:
             data = json.load(f)
         patients = []
+        
         for entry in data:
             patient = Patient(
                 entry["patient_id"],
