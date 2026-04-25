@@ -1,3 +1,4 @@
+import json
 from patient import Patient
 
 def add_patient(patients, patient_id, name, age, user_gender, contact_number):
@@ -66,3 +67,36 @@ def view_medical_history(patients, patient_id):
 
     if not found:
         print("Patient not found.")
+
+def save_data(patients):
+    data = []
+    for patient in patients:
+        data.append({
+            "patient_id": patient.patient_id,
+            "name": patient.name,
+            "age": patient.age,
+            "gender": patient.gender,
+            "contact_number": patient.contact_number,
+            "medical_records": patient.medical_records
+        })
+    with open("data.json", "w") as f:
+        json.dump(data, f, indent=4)
+
+def load_data():
+    try:
+        with open("data.json", "r") as f:
+            data = json.load(f)
+        patients = []
+        for entry in data:
+            patient = Patient(
+                entry["patient_id"],
+                entry["name"],
+                entry["age"],
+                entry["gender"],
+                entry["contact_number"]
+            )
+            patient.medical_records = entry.get("medical_records", [])
+            patients.append(patient)
+        return patients
+    except FileNotFoundError:
+        return []

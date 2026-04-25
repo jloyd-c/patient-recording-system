@@ -1,8 +1,10 @@
+# main.py
+
 from patient import Patient
-from utils import add_patient, view_all_patients, search_patient, update_patient, delete_patient, view_medical_history
+from utils import add_patient, view_all_patients, search_patient, update_patient, delete_patient, view_medical_history, save_data, load_data
 from records import add_medical_record
 
-patients = []
+patients = load_data()
 
 def gender():
      print("1. Male")
@@ -60,6 +62,7 @@ while True:
                 print("Invalid Input Please Enter Number!")
                 continue
             add_patient(patients, patient_id, name, age, user_gender, contact_number)
+            save_data(patients)
             print("Patient added successfully!")
 
     elif user_input == 2:
@@ -102,6 +105,7 @@ while True:
                     print("Invalid Input Please Enter Number!")
                     continue
         update_patient(patients, update, name, age, user_gender, contact_number, choice_option)
+        save_data(patients)
 
     elif user_input == 5:
         view_all_patients(patients)
@@ -119,12 +123,14 @@ while True:
         confirmation()
         delete_confirmation = int(input("Are you sure you want to delete patient record?: "))
         delete_patient(patients, delete_patients, delete_confirmation)
+        save_data(patients)
 
     elif user_input == 6:
         view_all_patients(patients)
         if len(patients) == 0:
             continue
         add_medical_record(patients)
+        save_data(patients)
 
     elif user_input == 7:
         view_all_patients(patients)
