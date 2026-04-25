@@ -87,7 +87,7 @@ def load_data():
         with open("data.json", "r") as f:
             data = json.load(f)
         patients = []
-        
+
         for entry in data:
             patient = Patient(
                 entry["patient_id"],
@@ -101,3 +101,17 @@ def load_data():
         return patients
     except FileNotFoundError:
         return []
+    
+def summary_report(patients):
+    total_patients = len(patients)
+    total_records = sum(len(patient.medical_records) for patient in patients)
+    male_count = sum(1 for patient in patients if patient.gender == "Male")
+    female_count = sum(1 for patient in patients if patient.gender == "Female")
+
+    print("\n====== SUMMARY REPORT ======")
+    print(f"Total Patients       : {total_patients}")
+    print(f"Total Medical Records: {total_records}")
+    print(f"\n--- Gender Breakdown ---")
+    print(f"Male                 : {male_count}")
+    print(f"Female               : {female_count}")
+    print("============================\n")
